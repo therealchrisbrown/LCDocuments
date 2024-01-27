@@ -1,5 +1,10 @@
 # Import os to set API key
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
+oai_api_key = os.environ.get('OPENAI_API_KEY')
+
 # Import OpenAI as main LLM service
 from langchain_openai import OpenAI
 from langchain_openai import OpenAIEmbeddings
@@ -20,11 +25,10 @@ from langchain.agents.agent_toolkits import (
 
 # Set APIkey for OpenAI Service
 # Can sub this out for other LLM providers
-from dotenv import load_dotenv
-load_dotenv()
+
 
 # Create instance of OpenAI LLM
-llm = OpenAI(temperature=0.1, verbose=True)
+llm = OpenAI(openai_api_key=oai_api_key, temperature=0.1, verbose=True)
 embeddings = OpenAIEmbeddings()
 
 # Create and load PDF Loader
